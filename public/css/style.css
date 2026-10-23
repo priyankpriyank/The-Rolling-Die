@@ -56,3 +56,133 @@ footer {
     padding: 20px;
     margin-top: 50px;
 }
+
+/* Manager Forms */
+
+.form-container {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container button {
+    margin-top: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container > a,
+.form-container > p {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+
+/* Dashboard */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.dashboard-container h2 {
+    margin-bottom: 15px;
+}
+
+.dashboard-container h3 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.inventory-table th {
+    background-color: #263238;
+    color: white;
+}
+
+.inventory-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.edit-btn {
+    background-color: #2980b9;
+}
+
+.edit-btn:hover {
+    background-color: #21618c;
+}
+
+.delete-btn {
+    background-color: #c0392b;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #922b21;
+}
+
+.logout-btn {
+    background-color: #607d8b;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎲 The Rolling Die</h1>
+        <p>Your Local Board Game Store & Café</p>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/inventory">Browse Games</a>
+        </nav>
+    </header>
+
+    <main class="inventory-container">
+
+        <h2>Our Board Game Collection</h2>
+
+        <p>Browse our available board games.</p>
+
+        <form action="/inventory" method="GET" class="search-form">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search for a game..."
+                value="{{searchTerm}}"
+            >
+
+            <button type="submit" class="btn">
+                Search
+            </button>
+
+            <a href="/inventory" class="btn reset-btn">
+                Show All
+            </a>
+
+        </form>
+
+        {{#hasGames}}
+
+        <div class="game-grid">
+
+            {{#games}}
+
+            <div class="game-card">
+
+                <h3>{{title}}</h3>
+
+                <p><strong>Category:</strong> {{category}}</p>
+
+                <p><strong>Players:</strong> {{players}}</p>
+
+                <p><strong>Price:</strong> ${{formattedPrice}}</p>
+
+                <p>{{description}}</p>
+
+                {{#inStock}}
+                <p class="stock available">
+                    In Stock: {{stock}} available
+                </p>
+                {{/inStock}}
+
+                {{#outOfStock}}
+                <p class="stock unavailable">
+                    Out of Stock
+                </p>
+                {{/outOfStock}}
+
+            </div>
+
+            {{/games}}
+
+        </div>
+
+        {{/hasGames}}
+
+        {{^hasGames}}
+
+        <div class="no-results">
+            <h3>No games found</h3>
+            <p>Try searching for another game.</p>
+        </div>
+
+        {{/hasGames}}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Rolling Die</p>
+    </footer>
+
+</body>
+
+</html>

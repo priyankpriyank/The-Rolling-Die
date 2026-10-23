@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎲 The Rolling Die</h1>
+        <p>Manager Login</p>
+    </header>
+
+    <main class="form-container">
+
+        <h2>Manager Login</h2>
+
+        {{#error}}
+        <p class="error-message">{{error}}</p>
+        {{/error}}
+
+        <form action="/manager/login" method="POST">
+
+            <label for="username">Username</label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                required
+            >
+
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+            >
+
+            <button type="submit" class="btn">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            <a href="/">Return to Homepage</a>
+        </p>
+
+    </main>
+
+</body>
+
+</html>

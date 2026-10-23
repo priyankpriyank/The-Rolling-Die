@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🎲 The Rolling Die</h1>
+
+        <p>Manager Dashboard</p>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/inventory">Public Inventory</a>
+            <a href="/manager/dashboard">Dashboard</a>
+        </nav>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <h2>Welcome, {{username}}!</h2>
+
+        <p>Manage your board game inventory below.</p>
+
+        <a href="/manager/add" class="btn">
+            + Add New Game
+        </a>
+
+        <h3>Current Inventory</h3>
+
+        {{#hasGames}}
+
+        <div class="table-wrapper">
+
+            <table class="inventory-table">
+
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {{#games}}
+
+                    <tr>
+
+                        <td>{{title}}</td>
+
+                        <td>{{category}}</td>
+
+                        <td>${{formattedPrice}}</td>
+
+                        <td>{{stock}}</td>
+
+                        <td>
+
+                            <a
+                                href="/manager/edit/{{id}}"
+                                class="btn edit-btn"
+                            >
+                                Edit
+                            </a>
+
+                            <form
+                                action="/manager/delete/{{id}}"
+                                method="POST"
+                                class="inline-form"
+                                onsubmit="return confirm('Are you sure you want to delete this game?');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="btn delete-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {{/games}}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {{/hasGames}}
+
+        {{^hasGames}}
+
+        <p>No games are currently in the inventory.</p>
+
+        {{/hasGames}}
+
+        <form action="/manager/logout" method="POST">
+
+            <button type="submit" class="btn logout-btn">
+                Logout
+            </button>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>
