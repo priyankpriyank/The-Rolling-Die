@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎲 The Rolling Die</h1>
+        <p>Edit Board Game</p>
+    </header>
+
+    <main class="form-container">
+
+        <h2>Edit Game</h2>
+
+        {{#error}}
+        <p class="error-message">{{error}}</p>
+        {{/error}}
+
+        <form action="/manager/edit/{{game.id}}" method="POST">
+
+            <label for="title">Game Title</label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{game.title}}"
+                required
+            >
+
+            <label for="category">Category</label>
+
+            <input
+                type="text"
+                id="category"
+                name="category"
+                value="{{game.category}}"
+                required
+            >
+
+            <label for="price">Price ($)</label>
+
+            <input
+                type="number"
+                id="price"
+                name="price"
+                step="0.01"
+                min="0"
+                value="{{game.price}}"
+                required
+            >
+
+            <label for="stock">Stock Quantity</label>
+
+            <input
+                type="number"
+                id="stock"
+                name="stock"
+                min="0"
+                step="1"
+                value="{{game.stock}}"
+                required
+            >
+
+            <label for="players">Number of Players</label>
+
+            <input
+                type="text"
+                id="players"
+                name="players"
+                value="{{game.players}}"
+            >
+
+            <label for="description">Description</label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+            >{{game.description}}</textarea>
+
+            <button type="submit" class="btn">
+                Save Changes
+            </button>
+
+        </form>
+
+        <a href="/manager/dashboard">
+            Back to Dashboard
+        </a>
+
+    </main>
+
+</body>
+
+</html>
