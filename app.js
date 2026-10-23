@@ -2,6 +2,7 @@ const express = require("express");
 const mustacheExpress = require("mustache-express");
 const session = require("express-session");
 const path = require("path");
+const { startBot } = require("./bot/bot");
 
 require("dotenv").config();
 
@@ -55,5 +56,12 @@ app.get("/", (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
+
     console.log(`Server running at http://localhost:${PORT}`);
+
+});
+
+// Start Discord bot
+startBot().catch(error => {
+    console.error("Failed to start Discord bot:", error);
 });
