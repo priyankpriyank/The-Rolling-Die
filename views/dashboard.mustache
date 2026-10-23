@@ -120,8 +120,49 @@
             </button>
 
         </form>
+<!-- Live Discord Bot Activity -->
 
-    </main>
+<section class="activity-section">
+
+    <h3>Live Discord Bot Activity</h3>
+
+    <p>
+        Monitor customer interactions with the Discord bot
+        in real time.
+    </p>
+
+    <div class="connection-container">
+
+        Connection Status:
+
+        <span
+            id="connection-status"
+            class="connection-offline"
+        >
+            Connecting...
+        </span>
+
+    </div>
+
+    <div id="activity-list" class="activity-list">
+
+        <p id="no-activity">
+            No recent Discord bot activity.
+            Waiting for commands...
+        </p>
+
+    </div>
+
+</section>
+</main>
+
+<!-- Socket.IO Client -->
+
+<script src="/socket.io/socket.io.js"></script>
+
+<!-- Dashboard JavaScript -->
+
+<script src="/js/dashboard.js"></script>
 
 </body>
 

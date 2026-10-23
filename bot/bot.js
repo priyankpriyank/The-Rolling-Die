@@ -13,6 +13,9 @@ const client = new Client({
     ]
 });
 
+// Socket.IO instance
+let socketIO;
+
 // Bot ready event
 client.once(Events.ClientReady, readyClient => {
 
@@ -25,7 +28,6 @@ async function findGame(title) {
 
     const games = await gameModel.searchGames(title);
 
-    // Prefer an exact match
     const exactMatch = games.find(game =>
         game.title.toLowerCase() === title.toLowerCase()
     );
@@ -47,21 +49,27 @@ client.on(Events.InteractionCreate, async interaction => {
         return;
     }
 
+    let title = "";
+    let status = "Success";
+
     try {
 
-        const title = interaction.options.getString(
+        await interaction.deferReply();
+
+        title = interaction.options.getString(
             "title",
             true
         ).trim();
 
-        // Search live SQLite data
+        // Query live database
         const game = await findGame(title);
 
-        // Game not found
         if (!game) {
 
-            await interaction.reply(
-                `❌ Sorry, we couldn't find "${title}" in our inventory.`
+            status = "Game Not Found";
+
+            await interaction.editReply(
+                `Sorry, we couldn't find "${title}" in our inventory.`
             );
 
             return;
@@ -72,17 +80,17 @@ client.on(Events.InteractionCreate, async interaction => {
 
             if (game.stock > 0) {
 
-                await interaction.reply(
-                    `🎲 **${game.title}**\n\n` +
-                    `✅ **In Stock!**\n` +
+                await interaction.editReply(
+                    `**${game.title}**\n\n` +
+                    `In Stock!\n` +
                     `Available copies: ${game.stock}`
                 );
 
             } else {
 
-                await interaction.reply(
-                    `🎲 **${game.title}**\n\n` +
-                    `❌ Currently out of stock.`
+                await interaction.editReply(
+                    `**${game.title}**\n\n` +
+                    `Currently out of stock.`
                 );
 
             }
@@ -92,14 +100,14 @@ client.on(Events.InteractionCreate, async interaction => {
         // Price command
         else if (commandName === "price") {
 
-            await interaction.reply(
-                `🎲 **${game.title}**\n\n` +
-                `💰 Price: **$${Number(game.price).toFixed(2)}**`
+            await interaction.editReply(
+                `**${game.title}**\n\n` +
+                `Price: $${Number(game.price).toFixed(2)}`
             );
 
         }
 
-        // Game information command
+        // Game details command
         else if (commandName === "game") {
 
             const stockMessage =
@@ -107,36 +115,57 @@ client.on(Events.InteractionCreate, async interaction => {
                     ? `${game.stock} available`
                     : "Out of stock";
 
-            await interaction.reply(
-                `🎲 **${game.title}**\n\n` +
-                `📚 Category: ${game.category}\n` +
-                `👥 Players: ${game.players || "Not specified"}\n` +
-                `💰 Price: $${Number(game.price).toFixed(2)}\n` +
-                `📦 Stock: ${stockMessage}\n\n` +
-                `📝 ${game.description || "No description available."}`
+            await interaction.editReply(
+                `**${game.title}**\n\n` +
+                `Category: ${game.category}\n` +
+                `Players: ${game.players || "Not specified"}\n` +
+                `Price: $${Number(game.price).toFixed(2)}\n` +
+                `Stock: ${stockMessage}\n\n` +
+                `${game.description || "No description available."}`
             );
 
         }
 
     } catch (error) {
 
+        status = "Error";
+
         console.error("Discord command error:", error);
 
         const errorMessage =
             "Sorry, something went wrong while checking our inventory.";
 
-        if (interaction.replied || interaction.deferred) {
+        try {
 
-            await interaction.followUp({
-                content: errorMessage,
-                ephemeral: true
-            });
+            if (interaction.deferred || interaction.replied) {
 
-        } else {
+                await interaction.editReply(errorMessage);
 
-            await interaction.reply({
-                content: errorMessage,
-                ephemeral: true
+            } else {
+
+                await interaction.reply({
+                    content: errorMessage,
+                    ephemeral: true
+                });
+
+            }
+
+        } catch (replyError) {
+
+            console.error("Unable to send error response:", replyError);
+
+        }
+
+    } finally {
+
+        // Send real-time activity to manager dashboard
+        if (socketIO) {
+
+            socketIO.to("managers").emit("botactivity", {
+                command: commandName,
+                title: title,
+                status: status,
+                time: new Date().toLocaleTimeString()
             });
 
         }
@@ -145,11 +174,15 @@ client.on(Events.InteractionCreate, async interaction => {
 
 });
 
-// Start Discord bot
-async function startBot() {
+// Start bot
+async function startBot(io) {
+
+    socketIO = io;
 
     if (!process.env.DISCORD_TOKEN) {
-        console.log("Discord token not configured. Bot not started.");
+
+        console.log("Discord token not configured.");
+
         return;
     }
 
