@@ -12,6 +12,7 @@
 
 <body>
 
+    <!-- Header -->
     <header>
         <h1>🎲 The Rolling Die</h1>
         <p>Your Local Board Game Store & Café</p>
@@ -19,21 +20,27 @@
         <nav>
             <a href="/">Home</a>
             <a href="/inventory">Browse Games</a>
+            <a href="/manager/login">Manager Login</a>
         </nav>
     </header>
 
+    <!-- Inventory -->
     <main class="inventory-container">
 
         <h2>Our Board Game Collection</h2>
 
-        <p>Browse our available board games.</p>
+        <p>
+            Explore our collection of board games.
+            Check prices and availability before visiting our store!
+        </p>
 
+        <!-- Search -->
         <form action="/inventory" method="GET" class="search-form">
 
             <input
                 type="text"
                 name="search"
-                placeholder="Search for a game..."
+                placeholder="Search for a board game..."
                 value="{{searchTerm}}"
             >
 
@@ -47,39 +54,74 @@
 
         </form>
 
+        <!-- Inventory Table -->
+
         {{#hasGames}}
 
-        <div class="game-grid">
+        <div class="inventory-table-wrapper">
 
-            {{#games}}
+            <table class="public-inventory-table">
 
-            <div class="game-card">
+                <thead>
+                    <tr>
+                        <th>Game Title</th>
+                        <th>Category</th>
+                        <th>Players</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
 
-                <h3>{{title}}</h3>
+                <tbody>
 
-                <p><strong>Category:</strong> {{category}}</p>
+                    {{#games}}
 
-                <p><strong>Players:</strong> {{players}}</p>
+                    <tr>
 
-                <p><strong>Price:</strong> ${{formattedPrice}}</p>
+                        <td class="game-title">
+                            🎲 {{title}}
+                        </td>
 
-                <p>{{description}}</p>
+                        <td>
+                            {{category}}
+                        </td>
 
-                {{#inStock}}
-                <p class="stock available">
-                    In Stock: {{stock}} available
-                </p>
-                {{/inStock}}
+                        <td>
+                            {{players}}
+                        </td>
 
-                {{#outOfStock}}
-                <p class="stock unavailable">
-                    Out of Stock
-                </p>
-                {{/outOfStock}}
+                        <td class="game-price">
+                            ${{formattedPrice}}
+                        </td>
 
-            </div>
+                        <td>
+                            {{stock}}
+                        </td>
 
-            {{/games}}
+                        <td>
+
+                            {{#inStock}}
+                            <span class="stock-badge in-stock">
+                                ● In Stock
+                            </span>
+                            {{/inStock}}
+
+                            {{#outOfStock}}
+                            <span class="stock-badge out-stock">
+                                ● Out of Stock
+                            </span>
+                            {{/outOfStock}}
+
+                        </td>
+
+                    </tr>
+
+                    {{/games}}
+
+                </tbody>
+
+            </table>
 
         </div>
 
@@ -89,13 +131,14 @@
 
         <div class="no-results">
             <h3>No games found</h3>
-            <p>Try searching for another game.</p>
+            <p>Try searching for another board game.</p>
         </div>
 
         {{/hasGames}}
 
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 The Rolling Die</p>
     </footer>
