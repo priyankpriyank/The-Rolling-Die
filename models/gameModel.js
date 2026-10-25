@@ -39,7 +39,7 @@ async function searchGames(searchTerm) {
     const db = await openDatabase();
 
     const games = await db.all(
-        "SELECT * FROM games WHERE title LIKE ? ORDER BY title ASC",
+        "SELECT * FROM games WHERE title or category LIKE ? ORDER BY title ASC",
         [`%${searchTerm}%`]
     );
 
