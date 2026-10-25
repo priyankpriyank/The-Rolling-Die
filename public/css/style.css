@@ -1,3 +1,10 @@
+/* =========================================================
+   The Rolling Die - Main Stylesheet
+   Emerging Web Development Project
+   Clean, User-Friendly & Student-Crafted CSS
+   ========================================================= */
+
+/* --- 1. Global Reset & Base Typography --- */
 * {
     margin: 0;
     padding: 0;
@@ -5,73 +12,323 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f7f9fa;
+    color: #2c3e50;
     line-height: 1.6;
 }
 
+/* --- 2. Header & Navigation --- */
 header {
     background-color: #263238;
-    color: white;
+    color: #ffffff;
     text-align: center;
-    padding: 30px;
+    padding: 30px 20px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 header h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
 }
 
+header p {
+    font-size: 15px;
+    color: #b0bec5;
+    margin-bottom: 12px;
+}
+
+header nav {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: #cfd8dc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+header nav a.active {
+    background-color: #e67e22;
+    color: #ffffff;
+}
+
+/* --- 3. Main Layout Containers --- */
 main {
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
 }
 
 main h2 {
-    margin-bottom: 20px;
+    font-size: 26px;
+    color: #263238;
+    margin-bottom: 14px;
 }
 
 main p {
-    margin-bottom: 30px;
+    font-size: 16px;
+    color: #546e7a;
+    margin-bottom: 24px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.home-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px 20px;
+}
+
+.home-actions {
+    margin-top: 25px;
+}
+
+.inventory-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- 4. Button Styles & Variants --- */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     background-color: #e67e22;
-    color: white;
-    padding: 12px 25px;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
     text-decoration: none;
-    border-radius: 5px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    vertical-align: middle;
 }
 
 .btn:hover {
     background-color: #d35400;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
 }
 
-footer {
-    background-color: #263238;
-    color: white;
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.35);
+}
+
+/* Secondary / Reset Button */
+.reset-btn {
+    background-color: #eceff1;
+    color: #455a64;
+    border: 1px solid #cfd8dc;
+    box-shadow: none;
+}
+
+.reset-btn:hover {
+    background-color: #cfd8dc;
+    color: #263238;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Action Button Variants */
+.add-btn {
+    background-color: #27ae60;
+}
+
+.add-btn:hover {
+    background-color: #219653;
+}
+
+.edit-btn {
+    background-color: #2980b9;
+}
+
+.edit-btn:hover {
+    background-color: #1f618d;
+}
+
+.delete-btn {
+    background-color: #c0392b;
+}
+
+.delete-btn:hover {
+    background-color: #962d22;
+}
+
+.logout-btn {
+    background-color: #607d8b;
+    margin-top: 30px;
+}
+
+.logout-btn:hover {
+    background-color: #455a64;
+}
+
+/* Table Button Sizing */
+.inventory-table .btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+/* --- 5. User-Friendly Search Bar --- */
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 8px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.search-input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 15px;
+    color: #888;
+    pointer-events: none;
+}
+
+.search-form input[type="text"] {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #333;
+    background-color: #fcfcfc;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.search-form input[type="text"]:focus {
+    background-color: #ffffff;
+    border-color: #e67e22;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.18);
+}
+
+.search-form input[type="text"]::placeholder {
+    color: #8c9ba5;
+    font-size: 14px;
+}
+
+.search-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-feedback {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff3e6;
+    color: #d35400;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 25px;
+    border: 1px solid #fed7aa;
+}
+
+.clear-search-link {
+    color: #c0392b;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.clear-search-link:hover {
+    color: #922b21;
+}
+
+/* Empty Search Results Card */
+.no-results {
+    background-color: #ffffff;
+    max-width: 520px;
+    margin: 35px auto;
+    padding: 35px 25px;
+    border-radius: 8px;
+    border: 1px dashed #ced4da;
     text-align: center;
-    padding: 20px;
-    margin-top: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* Manager Forms */
+.no-results-icon {
+    font-size: 44px;
+    margin-bottom: 12px;
+}
 
+.no-results h3 {
+    font-size: 20px;
+    color: #263238;
+    margin-bottom: 8px;
+}
+
+.no-results p {
+    font-size: 14px;
+    color: #607d8b;
+    margin-bottom: 20px;
+}
+
+/* --- 6. Form Containers (Manager Login, Add, Edit) --- */
 .form-container {
-    max-width: 550px;
+    max-width: 520px;
     margin: 40px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 35px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
     text-align: left;
 }
 
 .form-container h2 {
     text-align: center;
     margin-bottom: 25px;
+    font-size: 24px;
+    color: #263238;
 }
 
 .form-container form {
@@ -80,23 +337,34 @@ footer {
 }
 
 .form-container label {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #37474f;
 }
 
 .form-container input,
 .form-container textarea {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: 11px 14px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-container button {
-    margin-top: 25px;
-    border: none;
-    cursor: pointer;
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.18);
+}
+
+.form-container button[type="submit"] {
+    margin-top: 24px;
+    width: 100%;
 }
 
 .form-container > a,
@@ -109,131 +377,213 @@ footer {
 .error-message {
     color: #721c24;
     background-color: #f8d7da;
-    padding: 12px;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 14px;
 }
 
-
-/* Dashboard */
-
+/* --- 7. Manager Dashboard & Toolbar --- */
 .dashboard-container {
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 1150px;
+    margin: 30px auto;
     padding: 20px;
-}
-
-.dashboard-container h2 {
-    margin-bottom: 15px;
-}
-
-.dashboard-container h3 {
-    margin-top: 35px;
-    margin-bottom: 20px;
-}
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-.inventory-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-}
-
-.inventory-table th,
-.inventory-table td {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
-.inventory-table th {
-    background-color: #263238;
-    color: white;
+.dashboard-container h2 {
+    font-size: 26px;
+    color: #263238;
+    margin-bottom: 8px;
 }
 
-.inventory-table tr:hover {
-    background-color: #f5f5f5;
+.dashboard-container p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 18px;
+}
+
+.dashboard-container h3 {
+    margin-top: 30px;
+    margin-bottom: 16px;
+    color: #263238;
+}
+
+.dashboard-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0 25px 0;
+}
+
+.table-filter-wrapper {
+    max-width: 320px;
+    margin: 0;
+}
+
+.table-filter-wrapper input {
+    padding: 9px 14px 9px 38px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-filter-wrapper input:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.18);
+}
+
+/* --- 8. Tables (Public Inventory & Manager Table) --- */
+.table-wrapper,
+.inventory-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.inventory-table,
+.public-inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    min-width: 680px;
+}
+
+.inventory-table th,
+.public-inventory-table th {
+    background-color: #263238;
+    color: #ffffff;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.inventory-table td,
+.public-inventory-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #edf0f2;
+    text-align: left;
+    font-size: 14px;
+}
+
+.public-inventory-table tbody tr:nth-child(even),
+.inventory-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.public-inventory-table tbody tr:hover,
+.inventory-table tbody tr:hover {
+    background-color: #fff8f0;
+    transition: background-color 0.15s ease;
 }
 
 .inline-form {
     display: inline;
 }
 
-.edit-btn {
-    background-color: #2980b9;
+.game-title {
+    font-weight: 600;
+    color: #263238;
 }
 
-.edit-btn:hover {
-    background-color: #21618c;
+.game-price {
+    font-weight: 700;
+    color: #e67e22;
 }
 
-.delete-btn {
-    background-color: #c0392b;
-    border: none;
-    cursor: pointer;
+/* Stock Badges */
+.stock-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.delete-btn:hover {
-    background-color: #922b21;
+.in-stock {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
 }
 
-.logout-btn {
-    background-color: #607d8b;
-    border: none;
-    cursor: pointer;
-    margin-top: 30px;
+.out-stock {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
 }
 
-/* Live Activity Dashboard */
-
+/* --- 9. Live Bot Activity Section --- */
 .activity-section {
-    margin-top: 50px;
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 45px;
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     text-align: left;
 }
 
 .activity-section h3 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     color: #263238;
 }
 
+.activity-section p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
 .connection-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #546e7a;
 }
 
 .connection-online {
     color: #27ae60;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .connection-offline {
     color: #c0392b;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .activity-list {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    max-height: 400px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    max-height: 380px;
     overflow-y: auto;
+    background-color: #fafbfc;
 }
 
 .activity-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eef1f3;
     flex-wrap: wrap;
+    font-size: 14px;
 }
 
 .activity-item:last-child {
@@ -241,48 +591,115 @@ footer {
 }
 
 .activity-item:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
 }
 
 .activity-time {
-    color: #666;
-    font-size: 14px;
-    min-width: 100px;
+    color: #78909c;
+    font-size: 13px;
+    min-width: 85px;
 }
 
 .activity-command {
     background-color: #e67e22;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
 }
 
 .activity-title {
-    font-weight: bold;
+    font-weight: 600;
     flex: 1;
+    color: #263238;
 }
 
 .activity-status {
     color: #27ae60;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 13px;
 }
 
 #no-activity {
-    padding: 20px;
-    color: #777;
+    padding: 25px;
+    color: #78909c;
     text-align: center;
+    font-size: 14px;
+}
+
+/* --- 10. Footer --- */
+footer {
+    background-color: #263238;
+    color: #b0bec5;
+    text-align: center;
+    padding: 22px 20px;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: #90a4ae;
+}
+
+/* --- 11. Responsive Media Queries --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .inventory-container,
+    .dashboard-container {
+        padding: 25px 15px;
+    }
+
+    .public-inventory-table th,
+    .public-inventory-table td,
+    .inventory-table th,
+    .inventory-table td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .dashboard-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-filter-wrapper {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+    }
+
+    .search-input-wrapper {
+        width: 100%;
+    }
+
+    .search-actions {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+
+    .search-actions .btn {
+        flex: 1;
+    }
 
     .activity-section {
-        padding: 20px;
+        padding: 15px;
     }
 
     .activity-item {
         flex-direction: column;
         align-items: flex-start;
+        gap: 6px;
     }
-
 }

@@ -54,6 +54,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
     try {
 
+        // for 
         await interaction.deferReply();
 
         title = interaction.options.getString(

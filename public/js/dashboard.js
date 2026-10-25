@@ -93,4 +93,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
+    // Client-side quick filter for inventory table
+    const dashboardFilter = document.getElementById("dashboard-filter");
+
+    if (dashboardFilter) {
+
+        dashboardFilter.addEventListener("input", function() {
+
+            const query = this.value.toLowerCase().trim();
+            const rows = document.querySelectorAll(".inventory-table tbody tr");
+
+            rows.forEach(function(row) {
+
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+
+            });
+
+        });
+
+    }
+
 });

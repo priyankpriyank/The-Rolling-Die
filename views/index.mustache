@@ -15,9 +15,14 @@
     <header>
         <h1>🎲 The Rolling Die</h1>
         <p>Your Local Board Game Store & Café</p>
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="/inventory">Browse Games</a>
+            <a href="/manager/login">Manager Login</a>
+        </nav>
     </header>
 
-    <main>
+    <main class="home-container">
 
         <h2>{{message}}</h2>
 
@@ -26,9 +31,29 @@
             and explore our collection.
         </p>
 
-        <a href="/inventory" class="btn">
-            Browse Games
-        </a>
+        <!-- Quick Search Bar -->
+        <form action="/inventory" method="GET" class="search-form home-search" role="search">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by title or category (e.g. Catan, Strategy)..."
+                    aria-label="Search board games"
+                >
+            </div>
+            <div class="search-actions">
+                <button type="submit" class="btn">
+                    Search
+                </button>
+            </div>
+        </form>
+
+        <div class="home-actions">
+            <a href="/inventory" class="btn reset-btn">
+                Browse Full Collection
+            </a>
+        </div>
 
     </main>
 

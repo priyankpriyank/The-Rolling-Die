@@ -21,7 +21,7 @@
         <nav>
             <a href="/">Home</a>
             <a href="/inventory">Public Inventory</a>
-            <a href="/manager/dashboard">Dashboard</a>
+            <a href="/manager/dashboard" class="active">Dashboard</a>
         </nav>
 
     </header>
@@ -32,9 +32,21 @@
 
         <p>Manage your board game inventory below.</p>
 
-        <a href="/manager/add" class="btn">
-            + Add New Game
-        </a>
+        <div class="dashboard-toolbar">
+            <a href="/manager/add" class="btn add-btn">
+                ➕ Add New Game
+            </a>
+
+            <div class="search-input-wrapper table-filter-wrapper">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    id="dashboard-filter"
+                    placeholder="Quick filter games in table..."
+                    aria-label="Filter games in table"
+                >
+            </div>
+        </div>
 
         <h3>Current Inventory</h3>
 

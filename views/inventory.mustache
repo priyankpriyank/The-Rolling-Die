@@ -19,7 +19,7 @@
 
         <nav>
             <a href="/">Home</a>
-            <a href="/inventory">Browse Games</a>
+            <a href="/inventory" class="active">Browse Games</a>
             <a href="/manager/login">Manager Login</a>
         </nav>
     </header>
@@ -34,25 +34,45 @@
             Check prices and availability before visiting our store!
         </p>
 
-        <!-- Search -->
-        <form action="/inventory" method="GET" class="search-form">
+        <!-- Search Bar -->
+        <form action="/inventory" method="GET" class="search-form" role="search">
 
-            <input
-                type="text"
-                name="search"
-                placeholder="Search for a board game..."
-                value="{{searchTerm}}"
-            >
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by game title or category..."
+                    value="{{searchTerm}}"
+                    aria-label="Search board games"
+                >
+            </div>
 
-            <button type="submit" class="btn">
-                Search
-            </button>
+            <div class="search-actions">
+                <button type="submit" class="btn">
+                    Search
+                </button>
 
-            <a href="/inventory" class="btn reset-btn">
-                Show All
-            </a>
+                {{#searchTerm}}
+                <a href="/inventory" class="btn reset-btn" title="Clear search">
+                    ✕ Clear
+                </a>
+                {{/searchTerm}}
+                {{^searchTerm}}
+                <a href="/inventory" class="btn reset-btn" title="Show all games">
+                    Show All
+                </a>
+                {{/searchTerm}}
+            </div>
 
         </form>
+
+        {{#searchTerm}}
+        <div class="search-feedback">
+            <span>Showing results for "<strong>{{searchTerm}}</strong>"</span>
+            <a href="/inventory" class="clear-search-link">Reset</a>
+        </div>
+        {{/searchTerm}}
 
         <!-- Inventory Table -->
 
@@ -130,8 +150,12 @@
         {{^hasGames}}
 
         <div class="no-results">
+            <div class="no-results-icon">🎲</div>
             <h3>No games found</h3>
-            <p>Try searching for another board game.</p>
+            <p>We couldn't find any games matching "{{searchTerm}}". Try checking your spelling or searching by category like Strategy, Party, or Family.</p>
+            <a href="/inventory" class="btn reset-btn">
+                Show All Games
+            </a>
         </div>
 
         {{/hasGames}}
