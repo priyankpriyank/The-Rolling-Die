@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "node --watch app.js"
+    "dev": "node --watch app.js",
+    "seed": "node database/seed.js",
+    "create-manager": "node database/createManager.js",
+    "register-commands": "node bot/registerCommands.js"
   },
   "keywords": [],
   "author": "",

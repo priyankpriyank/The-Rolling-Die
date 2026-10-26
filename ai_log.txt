@@ -3,6 +3,7 @@ PROJECT #1: THE ROLLING DIE
 AI ASSISTANCE LOG
 ============================================================
 
+
 PROJECT:
 The Rolling Die - Board Game Inventory Management System
 
